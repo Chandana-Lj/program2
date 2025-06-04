@@ -7,14 +7,16 @@ trigger:
 
 pool:
   name: PrivateAgent
-  demands:
-    - agent.name -equals LAPTOP-P6MF1LBB
+ demands:
+  - maven
+  - Agent.Version -gtVersion 4.255.0
+
   vmImage: ubuntu-latest
 
 steps:
 - task: Maven@3
   inputs:
-    mavenPomFile: 'pom.xml'
+    mavenPomFile: 'myapp/pom.xml'
     goals: 'clean package'
     options: '-B'
     PublishJUnitResults: true
